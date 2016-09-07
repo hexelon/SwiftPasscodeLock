@@ -16,5 +16,6 @@ public protocol PasscodeRepositoryType {
     func savePasscode(passcode: [String])
     func deletePasscode()
 
-    var isTouchIdEnabled: Bool {get set}
+    var isTouchIdEnabled: Bool {get}
+    func setTouchIdEnabled(isEnabled: Bool)
 }

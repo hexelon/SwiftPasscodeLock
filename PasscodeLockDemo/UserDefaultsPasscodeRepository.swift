@@ -48,9 +48,10 @@ class UserDefaultsPasscodeRepository: PasscodeRepositoryType {
         get {
             return defaults.valueForKey(touchIdKey) as? Bool ?? false
         }
-        set(enabled) {
-            defaults.setObject(enabled, forKey: touchIdKey)
-            defaults.synchronize()
-        }
+    }
+
+    func setTouchIdEnabled(isEnabled: Bool) {
+        defaults.setObject(isEnabled, forKey: touchIdKey)
+        defaults.synchronize()
     }
 }
