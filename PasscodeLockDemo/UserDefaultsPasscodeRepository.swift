@@ -11,12 +11,12 @@ import PasscodeLock
 
 class UserDefaultsPasscodeRepository: PasscodeRepositoryType {
 
-    private let passcodeKey = "passcode.lock.passcode"
-    private let touchIdKey = "passcode.lock.touchid"
+    fileprivate let passcodeKey = "passcode.lock.passcode"
+    fileprivate let touchIdKey = "passcode.lock.touchid"
 
-    private lazy var defaults: NSUserDefaults = {
+    fileprivate lazy var defaults: UserDefaults = {
 
-        return NSUserDefaults.standardUserDefaults()
+        return UserDefaults.standard
     }()
 
     var hasPasscode: Bool {
@@ -29,29 +29,29 @@ class UserDefaultsPasscodeRepository: PasscodeRepositoryType {
 
     var passcode: [String]? {
 
-        return defaults.valueForKey(passcodeKey) as? [String] ?? nil
+        return defaults.value(forKey: passcodeKey) as? [String] ?? nil
     }
 
-    func savePasscode(passcode: [String]) {
+    func savePasscode(_ passcode: [String]) {
 
-        defaults.setObject(passcode, forKey: passcodeKey)
+        defaults.set(passcode, forKey: passcodeKey)
         defaults.synchronize()
     }
 
     func deletePasscode() {
 
-        defaults.removeObjectForKey(passcodeKey)
+        defaults.removeObject(forKey: passcodeKey)
         defaults.synchronize()
     }
 
     var isTouchIdEnabled: Bool {
         get {
-            return defaults.valueForKey(touchIdKey) as? Bool ?? false
+            return defaults.value(forKey: touchIdKey) as? Bool ?? false
         }
     }
 
-    func setTouchIdEnabled(isEnabled: Bool) {
-        defaults.setObject(isEnabled, forKey: touchIdKey)
+    func setTouchIdEnabled(_ isEnabled: Bool) {
+        defaults.set(isEnabled, forKey: touchIdKey)
         defaults.synchronize()
     }
 }
