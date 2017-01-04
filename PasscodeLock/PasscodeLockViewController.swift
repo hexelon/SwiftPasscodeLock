@@ -19,7 +19,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
         func getState() -> PasscodeLockStateType {
             
             switch self {
-            case .enterPasscode: return EnterPasscodeState()
+            case .enterPasscode: return EnterPasscodeState(allowCancellation: true)
             case .setPasscode: return SetPasscodeState()
             case .changePasscode: return ChangePasscodeState()
             case .removePasscode: return EnterPasscodeState(allowCancellation: true)
